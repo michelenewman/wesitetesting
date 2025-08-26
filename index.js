@@ -1,140 +1,83 @@
 let data;
+fetch("data.yml")
+  .then(res => res.text())
+  .then(text => { data = jsyaml.load(text); initSite(); });
 
-document.addEventListener("DOMContentLoaded", () => {
+function initSite() {
+  document.getElementById("bio-text").innerText = data.bio.text;
 
-  fetch("data.yml")
-    .then(response => response.text())
-    .then(yamlText => {
-      data = jsyaml.load(yamlText);
+  const researchList = document.getElementById("research-list");
+  data.research.forEach(r => {
+    const li = document.createElement("li");
+    li.innerText = `${r.emoji} ${r.text}`;
+    researchList.appendChild(li);
+  });
 
-      // Bio text
-      document.getElementById("bio-text").textContent = data.bio.text;
+  const workContainer = document.getElementById("my-work-buttons");
+  data.my_work.forEach(item => {
+    const btn = document.createElement("button");
+    btn.innerText = item.name;
+    btn.classList.add("work-btn");
+    btn.addEventListener("click", () => createProjectPopup(item));
+    workContainer.appendChild(btn);
+  });
 
-      // Bio image click fun-fact pop-ups
-      const bioImage = document.getElementById("bio-image");
-      bioImage.addEventListener("click", () => {
-        data.bio.fun_facts.forEach(fact => createFunFactPopup(fact.title, fact.content));
-      });
+  const bioImage = document.getElementById("bio-image");
+  bioImage.addEventListener("click", () => {
+    data.bio.fun_facts.forEach(f => createFunFactPopup(f));
+  });
 
-      // Research list
-      const researchDiv = document.getElementById("research-list");
-      researchDiv.innerHTML = "";
-      const ul = document.createElement("ul");
-      ul.className = "research-list";
-      data.research.forEach(item => {
-        const li = document.createElement("li");
-        li.textContent = `${item.emoji} ${item.text}`;
-        ul.appendChild(li);
-      });
-      researchDiv.appendChild(ul);
+  document.getElementById("egg-icon").addEventListener("click", () => {
+    createZeldaPopup(data.zelda_egg);
+  });
+}
 
-      // My Work buttons
-      const workDiv = document.getElementById("my-work-buttons");
-      workDiv.innerHTML = "";
-      data.my_work.forEach(work => {
-        const btn = document.createElement("button");
-        btn.className = "work-btn";
-        btn.id = work.id;
-        btn.textContent = work.name;
-        workDiv.appendChild(btn);
+function createPopup(title, content, type="project") {
+  const popup = document.createElement("div");
+  popup.classList.add("project-window");
+  
+  if(type === "scattered") popup.classList.add("scattered");
+  if(type === "zelda") popup.classList.add("egg-window", "zelda");
+  if(type === "projects") popup.classList.add("projects");
 
-        btn.addEventListener("click", () => {
-          if (work.name === "Publications" && data.publications) {
-            let pubContent = "<ul>";
-            data.publications.forEach(pub => {
-              pubContent += `<li>${pub.title}</li>`;
-            });
-            pubContent += "</ul>";
-            createProjectPopup(work.name, pubContent);
-          } else {
-            createProjectPopup(work.name, work.content);
-          }
-        });
-      });
-
-      // Zelda Easter Egg
-      document.getElementById("egg-icon").addEventListener("click", () => {
-        createZeldaPopup(data.zelda_egg);
-      });
-    });
-
-  // ---------- Pop-up functions ----------
-  function createProjectPopup(title, content) {
-    const popup = document.createElement("div");
-    popup.className = "project-window projects";
-
-    popup.innerHTML = `
-      <div class="window-header">
-        <span>${title}</span>
-        <button class="close-btn">X</button>
-      </div>
-      <div class="window-body">${content}</div>
-    `;
-
-    document.body.appendChild(popup);
-    popup.querySelector(".close-btn").addEventListener("click", () => popup.remove());
-    centerPopup(popup);
-    makeDraggable(popup);
-  }
-
-  function createFunFactPopup(title, content) {
-    const popup = document.createElement("div");
-    popup.className = "project-window scattered";
-    popup.innerHTML = `
-      <div class="window-header">${title}</div>
-      <div class="window-body">${content}</div>
-    `;
-    document.body.appendChild(popup);
-    randomPosition(popup);
-    makeDraggable(popup);
-  }
-
-  function createZeldaPopup(data) {
-    const popup = document.createElement("div");
-    popup.className = "egg-window zelda";
-    popup.innerHTML = `
-      <div class="window-header">${data.title}</div>
-      <div class="window-body">${data.content}<button class="close-btn">Close</button></div>
-    `;
-    document.body.appendChild(popup);
-    popup.querySelector(".close-btn").addEventListener("click", () => popup.remove());
-    centerPopup(popup);
-    makeDraggable(popup);
-  }
-
-  // ---------- Helpers ----------
-  function centerPopup(popup) {
-    popup.style.left = `50%`;
+  if(type === "scattered") {
+    popup.style.width = `${180 + Math.random()*40}px`;
+    popup.style.height = `${100 + Math.random()*50}px`;
+    popup.style.top = `${50 + Math.random()*200}px`;
+    popup.style.left = `${50 + Math.random()*200}px`;
+  } else {
     popup.style.top = `50%`;
+    popup.style.left = `50%`;
     popup.style.transform = `translate(-50%, -50%)`;
   }
 
-  function randomPosition(popup) {
-    const x = Math.random() * (window.innerWidth - 250);
-    const y = Math.random() * (window.innerHeight - 150);
-    popup.style.left = `${x}px`;
-    popup.style.top = `${y}px`;
-  }
+  const header = document.createElement("div");
+  header.className = "window-header";
+  header.innerText = title;
 
-  function makeDraggable(el) {
-    let isDragging = false;
-    let offsetX, offsetY;
-    const header = el.querySelector(".window-header");
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "close-btn";
+  closeBtn.innerText = "×";
+  closeBtn.addEventListener("click", () => popup.remove());
+  header.appendChild(closeBtn);
 
-    header.addEventListener("mousedown", (e) => {
-      isDragging = true;
-      offsetX = e.clientX - el.offsetLeft;
-      offsetY = e.clientY - el.offsetTop;
-      el.style.zIndex = 3000;
-    });
+  const body = document.createElement("div");
+  body.className = "window-body";
+  body.innerHTML = content;
 
-    document.addEventListener("mousemove", (e) => {
-      if (!isDragging) return;
-      el.style.left = `${e.clientX - offsetX}px`;
-      el.style.top = `${e.clientY - offsetY}px`;
-    });
+  popup.appendChild(header);
+  popup.appendChild(body);
+  document.body.appendChild(popup);
+}
 
-    document.addEventListener("mouseup", () => { isDragging = false; });
-  }
+function createProjectPopup(item) {
+  createPopup(item.name, item.content, "projects");
+}
 
-});
+function createFunFactPopup(fact) {
+  createPopup(fact.title, fact.content, "scattered");
+}
+
+function createZeldaPopup(egg) {
+  createPopup(egg.title, egg.content, "zelda");
+}
