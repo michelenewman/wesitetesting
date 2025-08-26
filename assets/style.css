@@ -9,7 +9,7 @@ body {
   padding:2rem;
 }
 
-/* Landing Page Boxes */
+/* Container */
 .container {
   display:flex;
   flex-direction:column;
@@ -18,6 +18,7 @@ body {
   margin:0 auto;
 }
 
+/* Boxes */
 .box {
   background:#fff;
   border:2px solid #c4a7e7;
@@ -26,49 +27,44 @@ body {
   box-shadow:4px 4px 0 #c4a7e7;
 }
 
-/* Individual Boxes */
+/* Individual box colors */
 .name-box { background:#f3e8ff; text-align:center; }
 .bio-box { 
-  display:flex; 
+  display: flex; 
+  flex-direction: row; 
   gap:1rem; 
-  align-items:flex-start; 
+  align-items: flex-start; 
   background:#e8f0ff; 
-  flex-wrap:wrap;
+  padding:1rem 1.5rem;
 }
 .bio-box img { 
   width:150px; 
   height:auto; 
   border-radius:12px; 
-  object-fit:cover;
+  object-fit:cover; 
+  flex-shrink:0; 
 }
 .research-box { background:#fff0f3; }
-.contact-box { background: #e8fff4; }
+.work-box { background:#fff8e8; }
+.contact-box { background:#e8fff4; }
 
-/* Text Styling */
 .tagline { font-style:italic; color:#666; }
 ul { padding-left:1.2rem; margin-top:0.5rem; }
 li { margin-bottom:0.5rem; }
-a { color: #6a5acd; text-decoration:none; }
+a { color:#6a5acd; text-decoration:none; }
 a:hover { text-decoration:underline; }
 
-/* Navigation Buttons */
-.nav-buttons { 
-  text-align:center; 
-  margin:2rem 0; 
-  display:flex; 
-  flex-wrap:wrap; 
-  gap:0.5rem; 
-  justify-content:center; 
-}
+/* Buttons */
+.nav-buttons { display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; }
 .nav-buttons button {
   padding:0.5rem 1rem; 
-  background:#d7eaff; 
-  border:2px solid #a3bffa; 
+  background:#ffd7d7; 
+  border:2px solid #ffa3a3; 
   border-radius:12px; 
   cursor:pointer;
   transition:all 0.2s;
 }
-.nav-buttons button:hover { background:#a3bffa; color:#fff; }
+.nav-buttons button:hover { background:#ffa3a3; color:#fff; }
 
 /* Popups */
 .popup {
@@ -103,11 +99,7 @@ a:hover { text-decoration:underline; }
 footer { text-align:center; margin-top:2rem; color:#444; cursor:pointer; font-size:0.9rem; }
 
 /* Marquee for Zelda Easter Egg */
-.marquee {
-  width:100%;
-  overflow:hidden;
-  display:block;
-}
+.marquee { width:100%; overflow:hidden; display:block; }
 .marquee span {
   display:inline-block;
   padding-left:100%;
@@ -120,7 +112,7 @@ footer { text-align:center; margin-top:2rem; color:#444; cursor:pointer; font-si
 
 /* Responsive */
 @media (max-width:600px) {
-  .bio-box { flex-direction:column; align-items:center; text-align:center; }
-  .bio-box img { width:120px; }
+  .bio-box { flex-direction: column; align-items:center; text-align:center; }
+  .bio-box img { width:120px; margin-bottom:0.5rem; }
   .nav-buttons { flex-direction:column; }
 }
