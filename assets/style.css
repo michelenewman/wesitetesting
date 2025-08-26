@@ -1,81 +1,135 @@
-/* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-/* Background */
 body {
-  font-family: "Verdana", sans-serif;
-  background: linear-gradient(135deg, #ffdede, #e9d9ff, #d9f5ec);
-  min-height: 100vh;
-  color: #333;
-  padding: 2rem;
-}
-
-/* Header */
-header {
+  background: #f7d5f7 url("/img/pexels-suju-2099737_med_light.jpg"); /*Replace with your own background*/
+	background-size: cover;
+	background-attachment: fixed;
+  background-position:center;
+	font-family: "VT-100", fixedsys, System, monospace;
+	font-size: 13px;
+  }
+  
+center {
   text-align: center;
-  padding: 2rem;
-  border: 3px solid #c4a7e7;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 4px 4px 0px #c4a7e7;
-  margin-bottom: 2rem;
-}
+  }
+  
+a {
+  color: #3c5832;
+  }
 
-h1 {
-  font-family: "Press Start 2P", monospace; /* retro font */
-  font-size: 1.5rem;
-  color: #c38d9e;
-}
+/*All sidebars go in here.*/  
+.sidebar-group {
+  position: fixed;
+  top: 0;
+  margin-top: 25px;
+  }
+  
+/*Code shared by all window-style boxes. To see what different specific sidebar classes look like, check the demo page.*/
+.sidebar, .mini-sidebar, .wide-sidebar, .box {
+  background: #dff7d5;
+  border-radius: 5px;
+  border: 1px solid #618a50;
+  box-shadow: 2px 2px #3c5832;
+  }
+  
+/*Prevent image overflow.*/
+.sidebar img, .mini-sidebar img, .wide-sidebar img, .box img {
+  max-width: 100%;
+  height:auto; /*Prevent squishing*/
+  }
+  
+.sidebar, .sidebar-box {
+  display: inline-block;
+  vertical-align: top;
+  width: 160px;
+  }
+  
+/*Container for vertical stacks of multiple mini-sidebars*/
+.sidebar-box {
+  margin-left: 10px;
+  }
+  
+.sidebar {
+  width: 160px;
+  margin-left: 25px;
+  }
+  
+.mini-sidebar {
+  margin-bottom: 25px;
+  }
+  
+.wide-sidebar {
+  margin-left: 25px;
+  margin-top: 25px;
+  width: 340px;
+  min-height: 150px;
+  }
+  
+/*Inside/main text of window boxes.*/
+.inner {
+  padding: 10px;
+  padding-bottom: 5px;
+  padding-top: 0px;
+  }
 
-.tagline {
-  font-style: italic;
-  color: #666;
-  margin-top: 0.5rem;
-}
-
-/* Navigation */
-nav {
-  margin-top: 1rem;
-}
-
-nav a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  margin: 0 0.3rem;
-  background: #d7eaff;
-  border: 2px solid #a3bffa;
-  border-radius: 12px;
-  color: #333;
-  transition: all 0.2s ease;
-}
-
-nav a:hover {
-  background: #a3bffa;
+/*The title bar at the top of window boxes.*/
+.title-bar, .box-title-bar {
+  background: #7aa469;
   color: white;
-  box-shadow: 2px 2px 0px #333;
-}
+  font-weight: bold;
+  padding: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  }
+  
+/*The title bar of boxes has slightly more padding, since there's more room to space text.*/
+.box-title-bar {
+  padding: 7px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  }
+  
+/*For the symbol in the top right corner.*/
+.right {
+  float: right;
+  margin-right: 5px;
+  font-family: "Arial", sans-serif;
+  line-height: 12px;
+  }
+  
+/*Round circular image.*/
+.icon {
+  border: #80aa6f solid 2px;
+  border-radius: 50%;
+  }
+  
+/*Main body text boxes.*/
+.box {
+  margin-top: 25px;
+  margin-left: 400px;
+  width: 455px;
+  margin-bottom: 25px;
+  }
+  
+  
+  
+/*this part is a joke. no need to use it.*/
+.big-quote {
+  font-size: 32px;
+  color: #3c5832;
+  letter-spacing: 6px;
+  word-spacing: 2px;
+  font-family: "Garamond", "Bookman", serif;
+  position: fixed;
+  margin-left: 1050px;
+  margin-top: 300px;
+  top: 0;
+  width: 300px;
+  }
+  
+wide {
+  letter-spacing: 16px;
+  }
+  
+midwide {
+  letter-spacing: 3px;
+  }
 
-/* Sections */
-section {
-  margin: 2rem auto;
-  max-width: 700px;
-  padding: 1.5rem;
-  border: 2px solid #ffb6b6;
-  background: #fffdf9;
-  border-radius: 15px;
-  box-shadow: 3px 3px 0px #ffb6b6;
-}
-
-h2 {
-  font-family: "Silkscreen", monospace;
-  color: #6a5acd;
-  margin-bottom: 0.8rem;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 3rem;
-  font-size: 0.9rem;
-  color: #444;
-}
