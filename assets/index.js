@@ -1,40 +1,54 @@
 let zIndexCounter = 100;
-const yamlFile = 'assets/data.yml';
-let siteData = null;
 
-// Load YAML
-fetch(yamlFile)
+// Load YAML data
+fetch('assets/data.yml')
   .then(res => res.text())
-  .then(yamlText => { siteData = jsyaml.load(yamlText); populatePopups(); })
+  .then(yamlText => {
+    const siteData = jsyaml.load(yamlText);
+    populatePopups(siteData);
+  })
   .catch(err => console.error('Error loading YAML:', err));
 
-function populatePopups() {
-  if (!siteData) return;
+// Populate popups with data from YAML
+function populatePopups(data) {
+  // Publications
   const pubList = document.getElementById('publications-list');
-  pubList.innerHTML = '';
-  siteData.publications.forEach(pub => {
-    const li = document.createElement('p');
-    li.innerHTML = `<strong>${pub.title}</strong>, ${pub.journal}, ${pub.year} <a href="${pub.link}" target="_blank">Link</a>`;
-    pubList.appendChild(li);
+  data.publications.forEach(pub => {
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${pub.title}</strong>, ${pub.journal}, ${pub.year} <a href="${pub.link}" target="_blank">Link</a>`;
+    pubList.appendChild(p);
   });
 
+  // Projects
   const projList = document.getElementById('projects-list');
-  projList.innerHTML = '';
-  siteData.projects.forEach(proj => {
-    const li = document.createElement('p');
-    li.innerHTML = `<strong>${proj.name}</strong>: ${proj.description} <a href="${proj.link}" target="_blank">Link</a>`;
-    projList.appendChild(li);
+  data.projects.forEach(proj => {
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${proj.name}</strong>: ${proj.description} <a href="${proj.link}" target="_blank">Link</a>`;
+    projList.appendChild(p);
   });
 
+  // Teaching
   const teachList = document.getElementById('teaching-list');
-  teachList.innerHTML = '';
-  siteData.teaching.forEach(course => {
-    const li = document.createElement('p');
-    li.innerHTML = `<strong>${course.course}</strong>, ${course.term} <a href="${course.link}" target="_blank">Link</a>`;
-    teachList.appendChild(li);
+  data.teaching.forEach(course => {
+    const p = document.createElement('p');
+    p.innerHTML = `<strong>${course.course}</strong>, ${course.term} <a href="${course.link}" target="_blank">Link</a>`;
+    teachList.appendChild(p);
   });
+
+  // Fun facts button (can be triggered as desired)
+  document.body.addEventListener('click', (e) => {
+    if (e.target.id === 'footer-text') {
+      showZeldaEgg();
+    }
+  });
+
+  // Show a fun fact when clicking anywhere (optional)
+  // document.body.addEventListener('click', (e) => {
+  //   if(e.target.id === 'fun-fact-btn') showFunFact(data.fun_facts);
+  // });
 }
 
+// Open/close popups
 function openPopup(id) {
   const popup = document.getElementById(id);
   popup.style.display = 'block';
@@ -45,10 +59,14 @@ function closePopup(id) {
   document.getElementById(id).style.display = 'none';
 }
 
-function showFunFact() {
-  if (!siteData) return;
-  const facts = siteData.fun_facts || [];
-  if (facts.length === 0) return;
+// Close All button
+document.getElementById('close-all-btn').addEventListener('click', () => {
+  document.querySelectorAll('.popup').forEach(popup => popup.style.display = 'none');
+});
+
+// Fun-fact popup
+function showFunFact(facts) {
+  if (!facts || facts.length === 0) return;
   const fact = facts[Math.floor(Math.random() * facts.length)];
 
   const popup = document.createElement('div');
@@ -73,6 +91,32 @@ function showFunFact() {
   makeDraggable(popup);
 }
 
+// Zelda Easter egg
+function showZeldaEgg() {
+  const popup = document.createElement('div');
+  popup.className = 'popup';
+  popup.style.background = '#e0d4ff';
+  popup.style.width = '250px';
+  popup.style.height = '120px';
+  popup.style.top = '150px';
+  popup.style.left = '50%';
+  popup.style.transform = 'translateX(-50%)';
+  popup.style.zIndex = zIndexCounter++;
+
+  popup.innerHTML = `
+    <div class="popup-header">
+      Zelda Easter Egg
+      <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
+    </div>
+    <div class="popup-content marquee" style="font-size:0.9rem;">
+      🔺 You found the Triforce! 🔺 It's dangerous to go alone… take this! 🗡️
+    </div>
+  `;
+  document.body.appendChild(popup);
+  makeDraggable(popup);
+}
+
+// Make popups draggable
 function makeDraggable(el) {
   const header = el.querySelector('.popup-header');
   let offsetX = 0, offsetY = 0, isDown = false;
@@ -93,35 +137,3 @@ function makeDraggable(el) {
 
   document.addEventListener('mouseup', () => { isDown = false; });
 }
-
-// Zelda Easter Egg
-document.getElementById('footer-text').addEventListener('click', () => {
-  const popup = document.createElement('div');
-  popup.className = 'popup';
-  popup.style.background = '#e0d4ff';
-  popup.style.width = '250px';
-  popup.style.height = '120px';
-  popup.style.top = '150px';
-  popup.style.left = '50%';
-  popup.style.transform = 'translateX(-50%)';
-  popup.style.zIndex = zIndexCounter++;
-
-  popup.innerHTML = `
-    <div class="popup-header">
-      Zelda Easter Egg
-      <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
-    </div>
-    <div class="popup-content marquee" style="font-size:0.9rem;">
-      🔺 You found the Triforce! 🔺 It's dangerous to go alone… take this! 🗡️
-    </div>
-  `;
-
-  document.body.appendChild(popup);
-  makeDraggable(popup);
-});
-
-// Close All
-document.getElementById('close-all-btn').addEventListener('click', () => {
-  const allPopups = document.querySelectorAll('.popup');
-  allPopups.forEach(popup => popup.remove());
-});
