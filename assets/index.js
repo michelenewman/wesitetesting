@@ -58,7 +58,6 @@ function closePopup(id) {
 function showFunFact() {
   if (!siteData) return;
 
-  // Random fun fact including Zelda
   const facts = siteData.fun_facts || [];
   if (facts.length === 0) return;
 
@@ -67,8 +66,10 @@ function showFunFact() {
   const popup = document.createElement('div');
   popup.className = 'popup';
   popup.style.background = '#e0d4ff'; // pastel purple for fun facts
-  popup.style.top = `${Math.random() * 300 + 50}px`;
-  popup.style.left = `${Math.random() * 500 + 50}px`;
+  popup.style.width = '220px';
+  popup.style.height = '150px';
+  popup.style.top = `${Math.random() * (window.innerHeight - 200) + 50}px`;
+  popup.style.left = `${Math.random() * (window.innerWidth - 250) + 50}px`;
   popup.style.zIndex = zIndexCounter++;
 
   popup.innerHTML = `
@@ -76,19 +77,24 @@ function showFunFact() {
       Fun Fact
       <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
     </div>
-    <div class="popup-content">${fact}</div>
+    <div class="popup-content" style="font-size:0.9rem; overflow:auto; max-height:110px;">
+      ${fact}
+    </div>
   `;
 
   document.body.appendChild(popup);
   makeDraggable(popup);
 }
 
-// Draggable
+// Draggable popups
 function makeDraggable(el) {
   const header = el.querySelector('.popup-header');
   let offsetX = 0, offsetY = 0, isDown = false;
 
   header.addEventListener('mousedown', e => {
+    // Prevent drag if clicking the close button
+    if (e.target.classList.contains('popup-close')) return;
+
     isDown = true;
     offsetX = e.clientX - el.offsetLeft;
     offsetY = e.clientY - el.offsetTop;
