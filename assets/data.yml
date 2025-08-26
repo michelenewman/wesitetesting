@@ -1,42 +1,36 @@
-bio:
-  name: Michele Newman
-  title: Ph.D. Candidate
-  institution: University of Washington Information School
-  description: >
-    I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.
-  research:
-    - Preserving digital stories, games, and cultural content before they disappear
-    - Co-creating tools and experiences that invite collaboration, creativity, and discovery
-    - Exploring how AI and new technologies change the way we imagine, create, and engage with information
-
+# Publications
 publications:
-  - title: "Exploring Digital Story Preservation in Game Communities"
-    journal: "Journal of Digital Culture"
-    year: 2024
+  - title: "Exploring Digital Worlds for Cultural Knowledge"
+    journal: "Journal of Interactive Media"
+    year: 2025
     link: "https://example.com/publication1"
-  - title: "Designing Creativity Support Tools for Learning"
-    journal: "Interactive Media Journal"
-    year: 2023
+  - title: "Co-Creation in Video Game Communities"
+    journal: "Digital Culture Review"
+    year: 2024
     link: "https://example.com/publication2"
 
+# Projects
 projects:
-  - name: "Minecraft Misinformation Simulation"
-    description: "A game-based project exploring digital civic engagement in youth."
+  - name: "Creative Software History"
+    description: "Exploring the evolution of creative software tools and their impact on communities."
     link: "https://example.com/project1"
-  - name: "Video Game Preservation Taxonomy"
-    description: "Categorizing and preserving player-generated content on YouTube."
+  - name: "LIS Experiments"
+    description: "Investigating knowledge creation and organization in library and information science."
     link: "https://example.com/project2"
 
+# Teaching
 teaching:
   - course: "Interactive Media & Community Knowledge"
     term: "Fall 2025"
     link: "https://example.com/course1"
-  - course: "Digital Literacy and Creativity"
+  - course: "Digital Literacy in Practice"
     term: "Spring 2025"
     link: "https://example.com/course2"
 
+# Fun Facts
 fun_facts:
-  - "🕹️ You found the first fun fact!"
-  - "💡 Did you know? Early web pages used marquee text."
-  - "🎨 Pastel colors make everything cuter!"
-  - "🔺 Zelda Easter Egg: It's dangerous to go alone… take this! 🗡️"
+  - "I love playing retro video games 🎮"
+  - "Coffee fuels my late-night coding ☕"
+  - "I once built a computer entirely out of recycled parts ♻️"
+  - "My favorite color is lavender 💜"
+  - "I collect quirky pixel art from old games 🖼️"
