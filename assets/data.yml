@@ -1,36 +1,30 @@
-# Publications
 publications:
-  - title: "Exploring Digital Worlds for Cultural Knowledge"
-    journal: "Journal of Interactive Media"
-    year: 2025
-    link: "https://example.com/publication1"
-  - title: "Co-Creation in Video Game Communities"
-    journal: "Digital Culture Review"
+  - title: "Paper 1"
+    journal: "Journal A"
     year: 2024
-    link: "https://example.com/publication2"
+    link: "https://example.com"
+  - title: "Paper 2"
+    journal: "Journal B"
+    year: 2025
+    link: "https://example.com"
 
-# Projects
 projects:
-  - name: "Creative Software History"
-    description: "Exploring the evolution of creative software tools and their impact on communities."
-    link: "https://example.com/project1"
-  - name: "LIS Experiments"
-    description: "Investigating knowledge creation and organization in library and information science."
-    link: "https://example.com/project2"
+  - name: "Project X"
+    description: "Creative software experiment"
+    link: "https://example.com"
+  - name: "Project Y"
+    description: "Community knowledge project"
+    link: "https://example.com"
 
-# Teaching
 teaching:
-  - course: "Interactive Media & Community Knowledge"
-    term: "Fall 2025"
-    link: "https://example.com/course1"
-  - course: "Digital Literacy in Practice"
-    term: "Spring 2025"
-    link: "https://example.com/course2"
+  - course: "HCI 101"
+    term: "Fall 2024"
+    link: "https://example.com"
+  - course: "Digital Archives"
+    term: "Winter 2025"
+    link: "https://example.com"
 
-# Fun Facts
 fun_facts:
-  - "I love playing retro video games 🎮"
-  - "Coffee fuels my late-night coding ☕"
-  - "I once built a computer entirely out of recycled parts ♻️"
-  - "My favorite color is lavender 💜"
-  - "I collect quirky pixel art from old games 🖼️"
+  - "I love collecting retro game cartridges."
+  - "Coffee helps fuel late-night coding sessions."
+  - "Sometimes I sketch imaginary creatures from my dreams."
