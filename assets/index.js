@@ -1,121 +1,144 @@
-let zIndexCounter = 100;
+// Sample data (replace or load from YAML if needed)
+const publications = [
+  { title: "Publication 1", link: "#" },
+  { title: "Publication 2", link: "#" },
+  { title: "Publication 3", link: "#" }
+];
 
-// Load YAML data
-fetch('assets/data.yml')
-  .then(res => res.text())
-  .then(yamlText => {
-    const siteData = jsyaml.load(yamlText);
-    populatePopups(siteData);
-    // Store fun-facts for dynamic popups
-    window.funFacts = siteData.fun_facts;
-  })
-  .catch(err => console.error('Error loading YAML:', err));
+const projects = [
+  { title: "Project A", link: "#" },
+  { title: "Project B", link: "#" }
+];
 
-// Populate static popups with YAML data
-function populatePopups(data) {
-  // Publications
-  const pubList = document.getElementById('publications-list');
-  data.publications.forEach(pub => {
-    const p = document.createElement('p');
-    p.innerHTML = `<strong>${pub.title}</strong>, ${pub.journal}, ${pub.year} <a href="${pub.link}" target="_blank">Link</a>`;
-    pubList.appendChild(p);
-  });
+const teaching = [
+  { title: "Course 101", link: "#" },
+  { title: "Course 102", link: "#" }
+];
 
-  // Projects
-  const projList = document.getElementById('projects-list');
-  data.projects.forEach(proj => {
-    const p = document.createElement('p');
-    p.innerHTML = `<strong>${proj.name}</strong>: ${proj.description} <a href="${proj.link}" target="_blank">Link</a>`;
-    projList.appendChild(p);
-  });
-
-  // Teaching
-  const teachList = document.getElementById('teaching-list');
-  data.teaching.forEach(course => {
-    const p = document.createElement('p');
-    p.innerHTML = `<strong>${course.course}</strong>, ${course.term} <a href="${course.link}" target="_blank">Link</a>`;
-    teachList.appendChild(p);
+// Populate popup lists
+function populateList(containerId, items) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  items.forEach(item => {
+    const el = document.createElement('p');
+    if(item.link) el.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+    else el.textContent = item.title;
+    container.appendChild(el);
   });
 }
 
-// Open / Close My Work Popups
+populateList('publications-list', publications);
+populateList('projects-list', projects);
+populateList('teaching-list', teaching);
+
+// Open/close popups
 function openPopup(id) {
   const popup = document.getElementById(id);
   popup.style.display = 'block';
-  popup.style.zIndex = zIndexCounter++;
-  makeDraggable(popup);
+
+  // Center on viewport
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+  const pw = popup.offsetWidth;
+  const ph = popup.offsetHeight;
+
+  popup.style.left = `${(vw - pw) / 2}px`;
+  popup.style.top = `${(vh - ph) / 2}px`;
+  popup.style.transform = 'none';
+  popup.style.zIndex = 1000;
 }
 
 function closePopup(id) {
-  document.getElementById(id).style.display = 'none';
+  const popup = document.getElementById(id);
+  popup.style.display = 'none';
 }
 
 // Close all popups
-document.getElementById('close-all-btn').addEventListener('click', () => {
-  document.querySelectorAll('.popup').forEach(popup => popup.style.display = 'none');
-});
+document.getElementById('close-all-btn').onclick = () => {
+  document.querySelectorAll('.popup').forEach(p => p.style.display='none');
+};
 
-// Create dynamic popup (fun-fact or Zelda)
-function createPopup(title, contentHTML, width=250, height=150) {
-  const popup = document.createElement('div');
-  popup.className = 'popup';
-  popup.style.background = '#e0d4ff';
-  popup.style.width = width+'px';
-  popup.style.height = height+'px';
-  popup.style.top = '150px';
-  popup.style.left = '50%';
-  popup.style.transform = 'translateX(-50%)';
-  popup.style.zIndex = zIndexCounter++;
-
-  popup.innerHTML = `
-    <div class="popup-header">
-      ${title}
-      <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
-    </div>
-    <div class="popup-content">${contentHTML}</div>
-  `;
-  document.body.appendChild(popup);
-  makeDraggable(popup);
-}
-
-// Fun-fact popup
-function showFunFact() {
-  if (!window.funFacts || window.funFacts.length === 0) return;
-  const fact = window.funFacts[Math.floor(Math.random() * window.funFacts.length)];
-  createPopup('Fun Fact', fact, 220, 150);
-}
-
-// Zelda Easter egg
-function showZeldaEgg() {
-  createPopup(
-    'Zelda Easter Egg',
-    `<div class="marquee" style="font-size:0.9rem;">🔺 You found the Triforce! 🔺 It's dangerous to go alone… take this! 🗡️</div>`,
-    250,
-    120
-  );
-}
-
-// Footer Zelda click
-document.getElementById('footer-text').addEventListener('click', showZeldaEgg);
-
-// Make popup draggable
-function makeDraggable(el) {
-  const header = el.querySelector('.popup-header');
-  let offsetX = 0, offsetY = 0, isDown = false;
+// Make popups draggable
+document.querySelectorAll('.popup').forEach(popup => {
+  const header = popup.querySelector('.popup-header');
+  let isDragging = false, offsetX, offsetY;
 
   header.addEventListener('mousedown', e => {
-    if (e.target.classList.contains('popup-close')) return;
-    isDown = true;
-    offsetX = e.clientX - el.offsetLeft;
-    offsetY = e.clientY - el.offsetTop;
-    el.style.zIndex = zIndexCounter++;
+    isDragging = true;
+    offsetX = e.clientX - popup.offsetLeft;
+    offsetY = e.clientY - popup.offsetTop;
+    popup.style.zIndex = 1000;
   });
 
   document.addEventListener('mousemove', e => {
-    if (!isDown) return;
-    el.style.left = `${e.clientX - offsetX}px`;
-    el.style.top = `${e.clientY - offsetY}px`;
+    if(isDragging){
+      popup.style.left = (e.clientX - offsetX) + 'px';
+      popup.style.top = (e.clientY - offsetY) + 'px';
+    }
   });
 
-  document.addEventListener('mouseup', () => { isDown = false; });
+  document.addEventListener('mouseup', () => { isDragging = false; });
+});
+
+// Fun-facts Easter eggs
+const funFacts = [
+  "Did you know? The first video game Easter egg was in 1979!",
+  "Tip: Collaboration sparks creativity.",
+  "AI can help preserve digital culture.",
+  "Creativity support tools make learning fun!"
+];
+
+function createFunFact() {
+  const fact = document.createElement('div');
+  fact.className = 'popup';
+  fact.style.width = '200px';
+  fact.style.height = '100px';
+  fact.style.background = '#e8d7ff';
+  fact.style.border = '2px solid #c4a7e7';
+  fact.style.color = '#333';
+  fact.style.top = `${Math.random() * (window.innerHeight - 120)}px`;
+  fact.style.left = `${Math.random() * (window.innerWidth - 220)}px`;
+  fact.style.zIndex = 500;
+  fact.innerHTML = `<div class="popup-header">Fun Fact <button class="popup-close">X</button></div>
+                    <div class="popup-content">${funFacts[Math.floor(Math.random()*funFacts.length)]}</div>`;
+  document.body.appendChild(fact);
+  fact.querySelector('.popup-close').onclick = () => fact.remove();
+
+  // Draggable
+  const header = fact.querySelector('.popup-header');
+  let isDragging = false, offsetX, offsetY;
+  header.addEventListener('mousedown', e => {
+    isDragging = true;
+    offsetX = e.clientX - fact.offsetLeft;
+    offsetY = e.clientY - fact.offsetTop;
+    fact.style.zIndex = 1000;
+  });
+  document.addEventListener('mousemove', e => {
+    if(isDragging){
+      fact.style.left = (e.clientX - offsetX) + 'px';
+      fact.style.top = (e.clientY - offsetY) + 'px';
+    }
+  });
+  document.addEventListener('mouseup', () => { isDragging = false; });
 }
+
+// Footer Zelda Easter Egg
+document.getElementById('footer-easter-egg').addEventListener('click', () => {
+  const zeldaPopup = document.createElement('div');
+  zeldaPopup.className = 'popup';
+  zeldaPopup.style.width = '250px';
+  zeldaPopup.style.height = '120px';
+  zeldaPopup.style.top = '50%';
+  zeldaPopup.style.left = '50%';
+  zeldaPopup.style.transform = 'translate(-50%, -50%)';
+  zeldaPopup.style.zIndex = 1000;
+  zeldaPopup.innerHTML = `
+    <div class="popup-header">Zelda Easter Egg <button class="popup-close">X</button></div>
+    <div class="popup-content">
+      <div class="marquee"><span>🔺 You found the Triforce! 🔺</span></div>
+      <p style="color:#6a5acd;">It's dangerous to go alone… take this! 🗡️</p>
+    </div>
+  `;
+  document.body.appendChild(zeldaPopup);
+  zeldaPopup.querySelector('.popup-close').onclick = () => zeldaPopup.remove();
+});
