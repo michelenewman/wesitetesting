@@ -8,9 +8,9 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HOME PAGE WINDOWS -->
   <div class="window header-window">
-    <div class="window-header"> Michele Newman </div>
+    <div class="window-header">Michele Newman</div>
     <div class="window-content">
       <p>Ph.D. Candidate · University of Washington Information School</p>
       <div class="buttons-container">
@@ -24,33 +24,32 @@
     </div>
   </div>
 
-  <!-- BIO -->
-  <div class="window">
+  <div class="window bio-window">
     <div class="window-header">Bio</div>
     <div class="window-content">
       <div class="bio-container">
         <img src="assets/bio.jpg" alt="Michele Newman portrait">
-        <p>
-          I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip.
-          My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.
-        </p>
+        <div class="bio-text">
+          <p>I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.</p>
+          <p>I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:</p>
+          <ul>
+            <li>Preserving digital stories, games, and cultural content before they disappear</li>
+            <li>Co-creating tools and experiences that invite collaboration, creativity, and discovery</li>
+            <li>Exploring how AI and new technologies change the way we imagine, create, and engage with information</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- POPUPS -->
+  <!-- POPUPS (same as before, resizable and draggable) -->
   <div id="researchPopup" class="popup" style="display:none; background:#fff0f5;">
     <div class="popup-header">
       Research
       <button class="popup-close" onclick="closePopup('researchPopup')">X</button>
     </div>
     <div class="popup-content">
-      <p>I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:</p>
-      <ul>
-        <li>Preserving digital stories, games, and cultural content before they disappear</li>
-        <li>Co-creating tools and experiences that invite collaboration, creativity, and discovery</li>
-        <li>Exploring how AI and new technologies change the way we imagine, create, and engage with information</li>
-      </ul>
+      <p>Research content here…</p>
     </div>
   </div>
 
@@ -59,9 +58,7 @@
       Publications
       <button class="popup-close" onclick="closePopup('publicationsPopup')">X</button>
     </div>
-    <div class="popup-content" id="publications-list">
-      <!-- Populated from YAML -->
-    </div>
+    <div class="popup-content" id="publications-list"></div>
   </div>
 
   <div id="projectsPopup" class="popup" style="display:none; background:#fffaf0;">
@@ -69,9 +66,7 @@
       Projects
       <button class="popup-close" onclick="closePopup('projectsPopup')">X</button>
     </div>
-    <div class="popup-content" id="projects-list">
-      <!-- Populated from YAML -->
-    </div>
+    <div class="popup-content" id="projects-list"></div>
   </div>
 
   <div id="teachingPopup" class="popup" style="display:none; background:#f5f5dc;">
@@ -79,9 +74,7 @@
       Teaching
       <button class="popup-close" onclick="closePopup('teachingPopup')">X</button>
     </div>
-    <div class="popup-content" id="teaching-list">
-      <!-- Populated from YAML -->
-    </div>
+    <div class="popup-content" id="teaching-list"></div>
   </div>
 
   <div id="cvPopup" class="popup" style="display:none; background:#f0f8ff;">
@@ -100,8 +93,7 @@
       <button class="popup-close" onclick="closePopup('contactPopup')">X</button>
     </div>
     <div class="popup-content">
-      <p>Email: <span id="email">michele@uw.edu</span>
-      <button class="button" onclick="copyEmail()">Copy</button></p>
+      <p>Email: <span id="email">michele@uw.edu</span> <button class="button" onclick="copyEmail()">Copy</button></p>
       <p>Twitter: <a href="https://twitter.com/" target="_blank">@michele</a></p>
     </div>
   </div>
