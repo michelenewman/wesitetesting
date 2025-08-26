@@ -12,7 +12,7 @@ bio:
     - title: "🕹️ Fun Fact"
       content: "My favoirte game series is ZELDA!!."
 
-# ---------- Research ----------
+# ---------- research ----------
 research:
   - emoji: "🎮"
     text: "Finding ways to preserve digital stories, games, and cultural content before they disappear"
@@ -21,27 +21,19 @@ research:
   - emoji: "🤖"
     text: "Exploring how AI and new technologies change the way we imagine, create, and engage with information"
 
-# ---------- My Work ----------
+# ---------- research ----------
 my_work:
   - name: "Projects"
-    id: "projects-btn"
-    content: "<p>My projects include game preservation experiments, interactive tools, and creativity support research.</p>"
+    content: "<p>History of creative software, LIS experiments, etc.</p>"
   - name: "Teaching"
-    id: "teaching-btn"
-    content: "<p>My teaching includes courses on LIS, HCI, and interactive media.</p>"
+    content: "<p>Syllabi, teaching philosophy, interactive workshops.</p>"
   - name: "Publications"
-    id: "publications-btn"
-    content: "<p>Click the button to view a full list of publications.</p>"
-
-# ---------- Publications ----------
-publications:
-  - title: "Newman, M. (2025). Exploring Creative Software in Cultural Communities. Journal of Digital Media, 12(3), 45-60."
-  - title: "Newman, M. & Lee, J. (2024). Preserving Video Games as Cultural Heritage. HCI & Culture Conference."
-  - title: "Newman, M. (2023). Co-Creation and Knowledge Sharing in Interactive Tools. International Journal of LIS."
-  - title: "Newman, M. (2026). Designing Interactive Tools for Knowledge Creation. Journal of Digital Innovation."
-  - title: "Newman, M. & Yip, J. (2025). Cultural Knowledge in Digital Worlds. ACM Digital Library."
-
-# ---------- Zelda Easter Egg ----------
+    content: |
+      <ul>
+        <li>Paper 1: Title, Journal, Year</li>
+        <li>Paper 2: Title, Journal, Year</li>
+        <li>Paper 3: Title, Journal, Year</li>
+      </ul>
 zelda_egg:
-  title: "🟨 Zelda Easter Egg"
+  title: "🔺 Triforce Found!"
   content: "<div class='scroll-text'><span>🔺 You found the Triforce! 🔺</span></div><p style='color:#6a5acd;'>It's dangerous to go alone… take this! 🗡️</p>"
