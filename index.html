@@ -3,45 +3,61 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michele Newman – PhD Candidate</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <title>Michele Newman – Academic Website</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
+  <script defer src="index.js"></script>
 </head>
 <body>
+
   <header>
-    <h1>Your Name</h1>
+    <h1>Michele Newman</h1>
     <p class="tagline">Researching creative software, culture, LIS + HCI</p>
     <nav>
+      <a href="#bio">Bio</a>
       <a href="#research">Research</a>
-      <a href="#projects">Projects</a>
-      <a href="#teaching">Teaching</a>
-      <a href="#cv">CV</a>
+      <a href="#my-work">My Work</a>
+      <a href="#contact">Contact</a>
+      <span id="egg-icon" style="cursor:pointer;">❓</span>
     </nav>
   </header>
 
   <main>
+    <!-- Bio Section -->
+    <section id="bio" class="bio-container">
+      <img src="assets/bio.jpg" alt="Michele Newman" id="bio-image" class="bio-image">
+      <p id="bio-text"></p>
+    </section>
+
+    <!-- Research Section -->
     <section id="research">
       <h2>📂 Research</h2>
-      <p>Publications and writing go here…</p>
+      <div id="research-list"></div>
     </section>
 
-    <section id="projects">
-      <h2>💾 Projects</h2>
-      <p>Creative software history, LIS experiments, etc.</p>
+    <!-- My Work Section -->
+    <section id="my-work">
+      <h2>💾 My Work</h2>
+      <div id="my-work-buttons" class="buttons-container"></div>
+      <div class="cv-container">
+        <a href="assets/cv.pdf" class="cv-btn">Download CV</a>
+      </div>
     </section>
 
-    <section id="teaching">
-      <h2>📑 Teaching</h2>
-      <p>Syllabi, teaching philosophy…</p>
-    </section>
-
-    <section id="cv">
-      <h2>📜 CV</h2>
-      <p><a href="assets/cv.pdf">Download CV</a></p>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>📬 Contact</h2>
+      <p>Email: <a href="mailto:michelle@example.com">michelle@example.com</a></p>
+      <p>
+        <a href="https://scholar.google.com" target="_blank">Google Scholar</a> ·
+        <a href="https://orcid.org" target="_blank">ORCID</a>
+      </p>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Your Name · Visitor counter: <span id="counter">000027</span></p>
+    <p>© 2025 Michele Newman</p>
   </footer>
+
 </body>
 </html>
