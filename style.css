@@ -16,11 +16,6 @@ header { text-align:center; padding:2rem; border:3px solid #c4a7e7; background:#
 h1 { font-family:"Press Start 2P", monospace; font-size:1.5rem; color:#c38d9e; }
 .tagline { font-style:italic; color:#666; margin-top:0.5rem; }
 
-/* Nav */
-nav { margin-top:1rem; }
-nav a { text-decoration:none; padding:0.5rem 1rem; margin:0 0.3rem; background:#d7eaff; border:2px solid #a3bffa; border-radius:12px; color:#333; transition:0.2s; }
-nav a:hover { background:#a3bffa; color:#fff; box-shadow:2px 2px 0 #333; }
-
 /* Sections */
 section { margin:2rem auto; max-width:700px; padding:1.5rem; border:2px solid #ffb6b6; background:#fffdf9; border-radius:15px; box-shadow:3px 3px 0 #ffb6b6; }
 h2 { font-family:"Silkscreen", monospace; color:#6a5acd; margin-bottom:0.8rem; }
@@ -49,17 +44,19 @@ h2 { font-family:"Silkscreen", monospace; color:#6a5acd; margin-bottom:0.8rem; }
 footer { text-align:center; margin-top:3rem; font-size:0.9rem; color:#444; }
 
 /* Pop-up windows */
-.project-window { position:absolute; background:#fff; border:3px solid #c4a7e7; border-radius:12px; box-shadow:4px 4px 0 #c4a7e7; min-width:250px; max-width:500px; min-height:150px; max-height:400px; overflow:auto; z-index:1000; }
+.project-window { position:absolute; background:#fff; border:3px solid #c4a7e7; border-radius:12px; box-shadow:4px 4px 0 #c4a7e7; z-index:1000; overflow:auto; }
 .project-window .window-header { background:#c4a7e7; color:#fff; padding:0.5rem; font-weight:bold; cursor:move; display:flex; justify-content:space-between; align-items:center; border-bottom:2px solid #6a5acd; }
 .project-window .window-body { padding:1rem; color:#333; }
 .project-window .close-btn { border:none; background:#fff; color:#c4a7e7; font-weight:bold; cursor:pointer; border-radius:50%; width:25px; height:25px; line-height:20px; }
 
-/* Fun-fact scattered pop-ups */
-.project-window.scattered { border:2px solid #a896f9; box-shadow:3px 3px 0 #a896f9; min-width:180px; max-width:220px; min-height:100px; max-height:150px; }
-.project-window.scattered .window-header { background:#a896f9; border-bottom:1px solid #6a5acd; }
+/* Resizable My Work pop-ups */
+.project-window.projects { resize: both; min-width:250px; min-height:150px; max-width:800px; max-height:600px; overflow:auto; }
+
+/* Bio fun-facts pop-ups (scattered) */
+.project-window.scattered { min-width:180px; min-height:100px; max-width:220px; max-height:200px; border:2px solid #a896f9; box-shadow:3px 3px 0 #a896f9; overflow:auto; }
 
 /* Zelda Easter Egg */
-.egg-window.zelda { border:3px solid #ffdd57; box-shadow:4px 4px 0 #ffdd57; min-width:250px; max-width:400px; min-height:150px; max-height:300px; }
+.egg-window.zelda { min-width:250px; min-height:150px; max-width:400px; max-height:300px; border:3px solid #ffdd57; box-shadow:4px 4px 0 #ffdd57; overflow:auto; }
 .egg-window.zelda .window-header { background:#ffdd57; color:#333; border-bottom:2px solid #c38d9e; }
 
 /* Scroll text for Zelda */
