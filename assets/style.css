@@ -26,26 +26,46 @@ body {
   box-shadow:4px 4px 0 #c4a7e7;
 }
 
-.name-box { background:#f3e8ff; }
-.bio-box { display:flex; gap:1rem; align-items:center; background:#e8f0ff; }
-.bio-box img { width:120px; border-radius:12px; }
+/* Individual Boxes */
+.name-box { background:#f3e8ff; text-align:center; }
+.bio-box { 
+  display:flex; 
+  gap:1rem; 
+  align-items:flex-start; 
+  background:#e8f0ff; 
+  flex-wrap:wrap;
+}
+.bio-box img { 
+  width:150px; 
+  height:auto; 
+  border-radius:12px; 
+  object-fit:cover;
+}
 .research-box { background:#fff0f3; }
 .contact-box { background: #e8fff4; }
 
+/* Text Styling */
 .tagline { font-style:italic; color:#666; }
-
-/* Lists */
 ul { padding-left:1.2rem; margin-top:0.5rem; }
 li { margin-bottom:0.5rem; }
-
-/* Links */
 a { color: #6a5acd; text-decoration:none; }
 a:hover { text-decoration:underline; }
 
 /* Navigation Buttons */
-.nav-buttons { text-align:center; margin:2rem 0; display:flex; flex-wrap:wrap; gap:0.5rem; justify-content:center; }
+.nav-buttons { 
+  text-align:center; 
+  margin:2rem 0; 
+  display:flex; 
+  flex-wrap:wrap; 
+  gap:0.5rem; 
+  justify-content:center; 
+}
 .nav-buttons button {
-  padding:0.5rem 1rem; background:#d7eaff; border:2px solid #a3bffa; border-radius:12px; cursor:pointer;
+  padding:0.5rem 1rem; 
+  background:#d7eaff; 
+  border:2px solid #a3bffa; 
+  border-radius:12px; 
+  cursor:pointer;
   transition:all 0.2s;
 }
 .nav-buttons button:hover { background:#a3bffa; color:#fff; }
@@ -60,8 +80,10 @@ a:hover { text-decoration:underline; }
   box-shadow:4px 4px 0 #c4a7e7;
   resize:both;
   overflow:auto;
-  min-width:200px;
-  min-height:100px;
+  min-width:250px;
+  min-height:150px;
+  max-width:90%;
+  max-height:80%;
 }
 
 .popup-header {
@@ -75,7 +97,6 @@ a:hover { text-decoration:underline; }
 }
 
 .popup-close { background:none; border:none; color:#fff; font-weight:bold; cursor:pointer; }
-
 .popup-content { padding:0.5rem; }
 
 /* Footer */
@@ -100,6 +121,6 @@ footer { text-align:center; margin-top:2rem; color:#444; cursor:pointer; font-si
 /* Responsive */
 @media (max-width:600px) {
   .bio-box { flex-direction:column; align-items:center; text-align:center; }
-  .bio-box img { width:100px; }
+  .bio-box img { width:120px; }
   .nav-buttons { flex-direction:column; }
 }
