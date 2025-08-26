@@ -1,30 +1,24 @@
+
 publications:
-  - title: "Paper 1"
-    journal: "Journal A"
-    year: 2024
-    link: "https://example.com"
-  - title: "Paper 2"
-    journal: "Journal B"
-    year: 2025
-    link: "https://example.com"
+  - title: "Title of Paper 1"
+    link: "https://link-to-paper1.com"
+  - title: "Title of Paper 2"
+    link: "https://link-to-paper2.com"
+  - title: "Title of Paper 3"
+    link: "https://link-to-paper3.com"
 
 projects:
-  - name: "Project X"
-    description: "Creative software experiment"
-    link: "https://example.com"
-  - name: "Project Y"
-    description: "Community knowledge project"
-    link: "https://example.com"
+  - name: "Project A"
+    link: "https://link-to-projectA.com"
+  - name: "Project B"
+    link: "https://link-to-projectB.com"
+  - name: "Project C"
+    link: "https://link-to-projectC.com"
 
 teaching:
-  - course: "HCI 101"
-    term: "Fall 2024"
-    link: "https://example.com"
-  - course: "Digital Archives"
-    term: "Winter 2025"
-    link: "https://example.com"
-
-fun_facts:
-  - "I love collecting retro game cartridges."
-  - "Coffee helps fuel late-night coding sessions."
-  - "Sometimes I sketch imaginary creatures from my dreams."
+  - course: "Course 101"
+    syllabus: "https://link-to-syllabus101.com"
+  - course: "Course 202"
+    syllabus: "https://link-to-syllabus202.com"
+  - course: "Course 303"
+    syllabus: "https://link-to-syllabus303.com"
