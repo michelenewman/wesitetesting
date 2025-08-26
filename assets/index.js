@@ -6,10 +6,12 @@ fetch('assets/data.yml')
   .then(yamlText => {
     const siteData = jsyaml.load(yamlText);
     populatePopups(siteData);
+    // Store fun-facts for dynamic popups
+    window.funFacts = siteData.fun_facts;
   })
   .catch(err => console.error('Error loading YAML:', err));
 
-// Populate popups with data from YAML
+// Populate static popups with YAML data
 function populatePopups(data) {
   // Publications
   const pubList = document.getElementById('publications-list');
@@ -34,70 +36,32 @@ function populatePopups(data) {
     p.innerHTML = `<strong>${course.course}</strong>, ${course.term} <a href="${course.link}" target="_blank">Link</a>`;
     teachList.appendChild(p);
   });
-
-  // Fun facts button (can be triggered as desired)
-  document.body.addEventListener('click', (e) => {
-    if (e.target.id === 'footer-text') {
-      showZeldaEgg();
-    }
-  });
-
-  // Show a fun fact when clicking anywhere (optional)
-  // document.body.addEventListener('click', (e) => {
-  //   if(e.target.id === 'fun-fact-btn') showFunFact(data.fun_facts);
-  // });
 }
 
-// Open/close popups
+// Open / Close My Work Popups
 function openPopup(id) {
   const popup = document.getElementById(id);
   popup.style.display = 'block';
   popup.style.zIndex = zIndexCounter++;
+  makeDraggable(popup);
 }
 
 function closePopup(id) {
   document.getElementById(id).style.display = 'none';
 }
 
-// Close All button
+// Close all popups
 document.getElementById('close-all-btn').addEventListener('click', () => {
   document.querySelectorAll('.popup').forEach(popup => popup.style.display = 'none');
 });
 
-// Fun-fact popup
-function showFunFact(facts) {
-  if (!facts || facts.length === 0) return;
-  const fact = facts[Math.floor(Math.random() * facts.length)];
-
+// Create dynamic popup (fun-fact or Zelda)
+function createPopup(title, contentHTML, width=250, height=150) {
   const popup = document.createElement('div');
   popup.className = 'popup';
   popup.style.background = '#e0d4ff';
-  popup.style.width = '220px';
-  popup.style.height = '150px';
-  popup.style.top = `${Math.random() * (window.innerHeight - 200) + 50}px`;
-  popup.style.left = `calc(50% - 110px)`;
-  popup.style.zIndex = zIndexCounter++;
-
-  popup.innerHTML = `
-    <div class="popup-header">
-      Fun Fact
-      <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
-    </div>
-    <div class="popup-content" style="font-size:0.9rem; overflow:auto; max-height:110px;">
-      ${fact}
-    </div>
-  `;
-  document.body.appendChild(popup);
-  makeDraggable(popup);
-}
-
-// Zelda Easter egg
-function showZeldaEgg() {
-  const popup = document.createElement('div');
-  popup.className = 'popup';
-  popup.style.background = '#e0d4ff';
-  popup.style.width = '250px';
-  popup.style.height = '120px';
+  popup.style.width = width+'px';
+  popup.style.height = height+'px';
   popup.style.top = '150px';
   popup.style.left = '50%';
   popup.style.transform = 'translateX(-50%)';
@@ -105,18 +69,36 @@ function showZeldaEgg() {
 
   popup.innerHTML = `
     <div class="popup-header">
-      Zelda Easter Egg
+      ${title}
       <button class="popup-close" onclick="this.parentElement.parentElement.remove()">X</button>
     </div>
-    <div class="popup-content marquee" style="font-size:0.9rem;">
-      🔺 You found the Triforce! 🔺 It's dangerous to go alone… take this! 🗡️
-    </div>
+    <div class="popup-content">${contentHTML}</div>
   `;
   document.body.appendChild(popup);
   makeDraggable(popup);
 }
 
-// Make popups draggable
+// Fun-fact popup
+function showFunFact() {
+  if (!window.funFacts || window.funFacts.length === 0) return;
+  const fact = window.funFacts[Math.floor(Math.random() * window.funFacts.length)];
+  createPopup('Fun Fact', fact, 220, 150);
+}
+
+// Zelda Easter egg
+function showZeldaEgg() {
+  createPopup(
+    'Zelda Easter Egg',
+    `<div class="marquee" style="font-size:0.9rem;">🔺 You found the Triforce! 🔺 It's dangerous to go alone… take this! 🗡️</div>`,
+    250,
+    120
+  );
+}
+
+// Footer Zelda click
+document.getElementById('footer-text').addEventListener('click', showZeldaEgg);
+
+// Make popup draggable
 function makeDraggable(el) {
   const header = el.querySelector('.popup-header');
   let offsetX = 0, offsetY = 0, isDown = false;
