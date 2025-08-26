@@ -3,7 +3,7 @@
 
 body {
   font-family:"Verdana", sans-serif;
-  background:#fff; /* professional white background */
+  background: linear-gradient(135deg, #fff0f5, #f0fff0, #f0f8ff);
   min-height:100vh;
   color:#333;
   padding:2rem;
