@@ -3,53 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Michele Newman – PhD Candidate</title>
+  <title>Michele Newman – Academic Website</title>
   <link rel="stylesheet" href="assets/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </head>
 <body>
-
-  <div class="container">
-
-    <div class="box name-box">
-      <h1>Michele Newman</h1>
-      <p class="tagline">Researching creative software and digital culture, LIS + HCI</p>
-    </div>
-
-    <div class="box bio-box">
-      <img src="assets/bio.jpg" alt="Michele Newman">
-      <p>I'm Michele Newman, a Ph.D. candidate at the University of Washington's Information School, advised by Dr. Jin Ha Lee and Dr. Jason Yip. My research explores how communities create and preserve cultural knowledge through interactive media, including video games and creativity support tools, framing these environments as lasting infrastructures for cultural heritage and community identity.</p>
-    </div>
-
-    <div class="box research-box">
-      <h2>Research Interests</h2>
-      <ul>
-        <li>🎮 Finding ways to preserve digital stories, games, and cultural content before they disappear</li>
-        <li>🎨 Co-creating tools and experiences that invite collaboration, creativity, and discovery</li>
-        <li>📖 Exploring how AI and new technologies change the way we imagine, create, and engage with information</li>
-      </ul>
-    </div>
-
-    <div class="box work-box">
-      <h2>My Work</h2>
-      <div class="nav-buttons">
-        <button onclick="openPopup('publications-popup')">Publications</button>
-        <button onclick="openPopup('projects-popup')">Projects</button>
-        <button onclick="openPopup('teaching-popup')">Teaching</button>
+  <!-- Header / Bio -->
+  <header class="header-box">
+    <div class="header-content">
+      <img src="assets/bio.jpg" alt="Michele Newman" class="bio-img">
+      <div class="header-text">
+        <h1>Michele Newman</h1>
+        <p class="title">Ph.D. Candidate, University of Washington Information School</p>
+        <p class="tagline">Exploring cultural knowledge creation through interactive media and digital preservation</p>
+        <div class="header-links">
+          <a href="https://scholar.google.com" target="_blank" class="icon-link">Google Scholar</a>
+          <a href="https://orcid.org" target="_blank" class="icon-link">ORCID</a>
+          <a href="assets/cv.pdf" target="_blank" class="icon-link">Download CV</a>
+        </div>
       </div>
     </div>
+  </header>
 
-    <div class="box contact-box">
-      <h2>Contact & Links</h2>
-      <p>Email: <a href="mailto:michele@example.com">michele@example.com</a></p>
-      <p><a href="https://scholar.google.com/" target="_blank">Google Scholar</a></p>
-      <p><a href="https://orcid.org/" target="_blank">ORCID</a></p>
-    </div>
+  <!-- Research Interests -->
+  <section class="research-box">
+    <h2>Research Interests</h2>
+    <p>
+      I’m curious about how digital worlds—like video games, interactive tools, and multimedia platforms—become spaces where communities create, share, and preserve knowledge. I explore how we can design environments that spark creativity, support learning, and protect cultural heritage. Along the way, I’m especially interested in:
+    </p>
+    <p>Finding ways to preserve digital stories, games, and cultural content before they disappear</p>
+    <p>Co-creating tools and experiences that invite collaboration, creativity, and discovery</p>
+    <p>Exploring how AI and new technologies change the way we imagine, create, and engage with information</p>
+  </section>
 
-  </div>
+  <!-- My Work Buttons -->
+  <section class="mywork-box">
+    <h2>My Work</h2>
+    <button onclick="openPopup('publications-popup')">Publications</button>
+    <button onclick="openPopup('projects-popup')">Projects</button>
+    <button onclick="openPopup('teaching-popup')">Teaching</button>
+  </section>
 
-  <div class="nav-buttons bottom-button">
-    <button id="close-all-btn">Close All Windows</button>
-  </div>
+  <button id="close-all-btn" class="close-all-btn">Close All Windows</button>
 
   <!-- Popups -->
   <div id="publications-popup" class="popup">
@@ -67,8 +62,9 @@
     <div class="popup-content" id="teaching-list"></div>
   </div>
 
-  <footer id="footer-easter-egg">
-    <p>© 2025 Michele Newman · Click here for a surprise!</p>
+  <!-- Footer / Zelda Easter Egg -->
+  <footer>
+    <p>© 2025 Michele Newman · <span id="footer-easter-egg">Click here for a surprise!</span></p>
   </footer>
 
   <script src="assets/index.js"></script>
