@@ -1,24 +1,17 @@
-
 publications:
-  - title: "Title of Paper 1"
-    link: "https://link-to-paper1.com"
-  - title: "Title of Paper 2"
-    link: "https://link-to-paper2.com"
-  - title: "Title of Paper 3"
-    link: "https://link-to-paper3.com"
+  - title: "Understanding Interactive Media"
+    link: "https://example.com/pub1"
+  - title: "Digital Preservation Strategies"
+    link: "https://example.com/pub2"
 
 projects:
-  - name: "Project A"
-    link: "https://link-to-projectA.com"
-  - name: "Project B"
-    link: "https://link-to-projectB.com"
-  - name: "Project C"
-    link: "https://link-to-projectC.com"
+  - name: "Cultural Knowledge Platform"
+    link: "https://example.com/project1"
+  - name: "Game-Based Learning Tool"
+    link: "https://example.com/project2"
 
 teaching:
-  - course: "Course 101"
-    syllabus: "https://link-to-syllabus101.com"
-  - course: "Course 202"
-    syllabus: "https://link-to-syllabus202.com"
-  - course: "Course 303"
-    syllabus: "https://link-to-syllabus303.com"
+  - course: "Introduction to Interactive Media"
+    syllabus: "https://example.com/syllabus1"
+  - course: "Digital Preservation Practices"
+    syllabus: "https://example.com/syllabus2"
